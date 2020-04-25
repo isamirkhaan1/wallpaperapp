@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Base style for all costumed TextViews -->
+    <!-- -->
+    <style name="tv_base" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/nunito_sans_bold</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+    </style>
+</resources>

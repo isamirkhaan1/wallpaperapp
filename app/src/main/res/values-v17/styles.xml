@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- layout_marginStart and layout_marginEnd are supported in v17-->
+    <style name="view_box">
+        <item name="android:layout_height">@dimen/box_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+    <!-- layout_marginStart and layout_marginEnd are supported in v17-->
+    <style name="tv_box_msg" parent="tv_base">
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>

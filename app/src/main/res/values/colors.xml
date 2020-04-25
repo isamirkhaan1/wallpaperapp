@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/color_black_shade1</color>
+    <color name="colorPrimaryDark">@color/color_black_shade1</color>
+    <color name="colorAccent">@color/color_black_shade2</color>
+
+
+    <color name="color_text_primary">@color/color_black_shade1</color>
+    <color name="color_text_secondary">@color/color_black_shade3</color>
+
+
+    <!-- only these colors are used in the app  -->
+    <color name="color_black_shade1">#191919</color>
+    <color name="color_black_shade2">#323232</color>
+    <color name="color_black_shade3">#4c4c4c</color>
+    <color name="color_black_shade4">#CCCCCC</color>
+</resources>

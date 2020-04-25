@@ -1,0 +1,52 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <!-- Base style for all costumed TextViews -->
+    <style name="tv_base" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+    </style>
+
+
+    <!--TextView for main title -->
+    <style name="tv_title" parent="tv_base">
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+
+
+    <!--TextView for sub title -->
+    <style name="tv_sub_title" parent="tv_base">
+        <item name="android:textColor">@color/color_text_secondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!--TextView for box message -->
+    <style name="tv_box_msg" parent="tv_base">
+        <item name="android:layout_marginLeft">24dp</item>
+        <item name="android:layout_marginRight">24dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+
+    <!-- ViewBox raw design -->
+    <style name="view_box">
+        <item name="android:layout_height">@dimen/box_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+    </style>
+
+</resources>

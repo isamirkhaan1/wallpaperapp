@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory>
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:icon="@drawable/ic_wallpaper"
+            android:key="daily_new_wallpaper"
+            android:summary="@string/msg_daily_new_wallpaper"
+            android:title="@string/tit_daily_new_wallpaper" />
+
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_wifi"
+            android:key="wifi_only"
+            android:summary="@string/msg_wifi_only"
+            android:title="@string/tit_wifi_only" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory>
+        <EditTextPreference
+            android:key="app_version"
+            android:selectable="false"
+            android:summary="@string/msg_version"
+            android:title="@string/tit_version" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
