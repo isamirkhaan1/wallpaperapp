@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "542648749189",
+    "firebase_url": "https://wallpaperapp-be686.firebaseio.com",
+    "project_id": "wallpaperapp-be686",
+    "storage_bucket": "wallpaperapp-be686.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542648749189:android:405e6f659e4a37a245adec",
+        "android_client_info": {
+          "package_name": "com.samirk.wallpaperapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542648749189-69sivecuprd5efnumv31f70s1c06kvpb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samirk.wallpaperapp",
+            "certificate_hash": "349ca5e23737f0d2d37cbc5132213907fc172e83"
+          }
+        },
+        {
+          "client_id": "542648749189-4isemc50ul0hlv192sp9cvckblqs794r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApfPGozL-ZpktOT5sdvJzghehd-SCb5KQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542648749189-4isemc50ul0hlv192sp9cvckblqs794r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
