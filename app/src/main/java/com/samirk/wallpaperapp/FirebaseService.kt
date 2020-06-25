@@ -17,7 +17,7 @@ class FirebaseService : FirebaseMessagingService() {
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
 
-        //update token locally and in firestore
-        FirestoreUtils(context = applicationContext).setFirebaseToken(token = p0)
+        //update token locally and on firestore
+        FirestoreUtils(context = applicationContext).updateToken(token = p0)
     }
 }

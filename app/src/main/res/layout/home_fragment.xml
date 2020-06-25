@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--Scrollable view-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,8 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp">
+        android:paddingBottom="8dp">
 
+        <!--region title-->
         <TextView
             android:id="@+id/tv_title"
 
@@ -19,7 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/tv_sub_title"
 
@@ -28,10 +30,11 @@
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+        <!--endregion-->
 
-
+        <!--region wallpaper options-->
         <ImageView
-            android:id="@+id/view_white_theme"
+            android:id="@+id/img_white_theme"
 
             style="@style/view_box"
             android:layout_marginTop="36dp"
@@ -41,19 +44,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_sub_title" />
 
-
         <TextView
             android:id="@+id/tv_white_theme"
 
             style="@style/tv_box_msg"
             android:text="@string/msg_white_box"
 
-            app:layout_constraintBottom_toBottomOf="@+id/view_white_theme"
+            app:layout_constraintBottom_toBottomOf="@+id/img_white_theme"
             app:layout_constraintStart_toStartOf="parent" />
 
-
         <ImageView
-            android:id="@+id/view_black_theme"
+            android:id="@+id/img_black_theme"
 
             style="@style/view_box"
             android:layout_marginTop="24dp"
@@ -61,8 +62,7 @@
             android:src="@drawable/img_black"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_white_theme" />
-
+            app:layout_constraintTop_toBottomOf="@+id/img_white_theme" />
 
         <TextView
             android:id="@+id/tv_black_theme"
@@ -71,45 +71,42 @@
             android:text="@string/msg_black_box"
             android:textColor="@android:color/white"
 
-            app:layout_constraintBottom_toBottomOf="@+id/view_black_theme"
+            app:layout_constraintBottom_toBottomOf="@+id/img_black_theme"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-
-            android:id="@+id/view_colored_theme"
+            android:id="@+id/img_color_theme"
 
             style="@style/view_box"
             android:layout_marginTop="24dp"
             android:scaleType="fitXY"
-            android:src="@drawable/img_colored"
+            android:src="@drawable/img_color"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_black_theme" />
+            app:layout_constraintTop_toBottomOf="@+id/img_black_theme" />
 
         <TextView
-            android:id="@+id/tv_colored_theme"
+            android:id="@+id/tv_color_theme"
 
             style="@style/tv_box_msg"
-            android:text="@string/msg_colored_box"
+            android:text="@string/msg_color_box"
 
-            app:layout_constraintBottom_toBottomOf="@+id/view_colored_theme"
+            app:layout_constraintBottom_toBottomOf="@+id/img_color_theme"
             app:layout_constraintStart_toStartOf="parent" />
+            <!--endregion -->
 
-
-
-        <!--setting icon -->
+        <!--region setting-->
         <ImageView
             android:id="@+id/img_settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="28dp"
 
             android:src="@drawable/ic_settings"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_colored_theme" />
-
+            app:layout_constraintTop_toBottomOf="@+id/img_color_theme" />
 
         <TextView
             android:id="@+id/tv_settings"
@@ -121,6 +118,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_settings" />
+        <!--endregion-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
