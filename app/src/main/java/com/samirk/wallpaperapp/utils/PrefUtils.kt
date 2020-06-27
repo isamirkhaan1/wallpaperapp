@@ -43,5 +43,9 @@ class PrefUtils(context: Context) {
 
     fun isTokenGenerated() = token != Constants.DEFAULT_TOKEN
 
+    fun downloadOnlyWithWifi() = pref.getBoolean(Constants.PREF_WIFI_ONLY, false)
+
+    fun getDailyNewWallpaper() = pref.getBoolean(Constants.PREF_DAILY_NEW_WALLPAPER, true)
+
     private fun commit() = editor.commit()
 }

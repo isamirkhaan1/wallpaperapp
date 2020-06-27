@@ -10,6 +10,7 @@
             android:title="@string/tit_daily_new_wallpaper" />
 
         <SwitchPreferenceCompat
+            android:defaultValue="false"
             android:icon="@drawable/ic_wifi"
             android:key="wifi_only"
             android:summary="@string/msg_wifi_only"

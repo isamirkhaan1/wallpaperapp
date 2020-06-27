@@ -27,8 +27,6 @@ class FirebaseUtils(context: Context) {
         FirebaseInstanceId.getInstance().deleteInstanceId()
     }
 
-    fun isSubscribedToAnyTopic() = pref.isUserCreated()
-
     private fun updateThemeLocally(theme: String) {
         pref.theme = theme
     }

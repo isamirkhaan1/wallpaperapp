@@ -17,5 +17,9 @@ class Constants {
         val DEFAULT_THEME = Theme.COLOR
         const val DEFAULT_USER_ID = -1L
         const val DEFAULT_TOKEN = EMPTY_STRING
+
+        //setting prefs keys
+        const val PREF_WIFI_ONLY = "wifi_only"
+        const val PREF_DAILY_NEW_WALLPAPER = "daily_new_wallpaper"
     }
 }
