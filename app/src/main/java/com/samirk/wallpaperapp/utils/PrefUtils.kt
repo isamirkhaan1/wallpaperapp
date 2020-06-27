@@ -35,7 +35,7 @@ class PrefUtils(context: Context) {
     var theme: String
         get() = pref.getString(PREF_THEME, Constants.DEFAULT_THEME.name)!!
         set(_theme) {
-            editor.putString(PREF_THEME, _theme)
+            editor.putString(PREF_THEME, _theme.toLowerCase())
             commit()
         }
 

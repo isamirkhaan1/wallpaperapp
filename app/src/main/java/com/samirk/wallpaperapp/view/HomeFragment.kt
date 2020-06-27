@@ -44,15 +44,15 @@ class HomeFragment : Fragment() {
         img_settings.setOnClickListener(SettingsClickListener())
         tv_settings.setOnClickListener(SettingsClickListener())
 
-        val white = Constants.Theme.WHITE.name
+        val white = Constants.Theme.WHITE.name.toLowerCase()
         img_white_theme.setOnClickListener(ThemeClickListener(theme = white))
         tv_white_theme.setOnClickListener(ThemeClickListener(theme = white))
 
-        val black = Constants.Theme.BLACK.name
+        val black = Constants.Theme.BLACK.name.toLowerCase()
         img_black_theme.setOnClickListener(ThemeClickListener(theme = black))
         tv_black_theme.setOnClickListener(ThemeClickListener(theme = black))
 
-        val color = Constants.Theme.COLOR.name
+        val color = Constants.Theme.COLOR.name.toLowerCase()
         img_color_theme.setOnClickListener(ThemeClickListener(theme = color))
         tv_color_theme.setOnClickListener(ThemeClickListener(theme = color))
     }
