@@ -12,8 +12,10 @@ class Constants {
 
     companion object {
 
+        const val EMPTY_STRING = ""
+
         val DEFAULT_THEME = Theme.COLOR
         const val DEFAULT_USER_ID = -1L
-        const val DEFAULT_TOKEN = ""
+        const val DEFAULT_TOKEN = EMPTY_STRING
     }
 }

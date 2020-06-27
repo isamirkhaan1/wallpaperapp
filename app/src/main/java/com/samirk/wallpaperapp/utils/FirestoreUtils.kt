@@ -11,6 +11,7 @@ class FirestoreUtils(context: Context) {
 
     private val firestore = Firebase.firestore
     private val pref = PrefUtils(context = context)
+    private val firebaseUtils = FirebaseUtils(context = context)
 
     companion object {
 
@@ -31,8 +32,14 @@ class FirestoreUtils(context: Context) {
         //  Create user ONLY once
         if (pref.isUserCreated()) return
 
+        val currTheme =
+            if (pref.theme == Constants.EMPTY_STRING)
+                Constants.DEFAULT_THEME.name.toLowerCase()
+            else
+                pref.theme
+
         val data = hashMapOf<String, Any>(
-            KEY_THEME to pref.theme,
+            KEY_THEME to currTheme,
             KEY_TOKEN to pref.token
         )
 
@@ -110,6 +117,9 @@ class FirestoreUtils(context: Context) {
 
     private fun addUserLocally(userId: Long) {
         pref.userId = userId
+
+        //save default theme as well
+        updateThemeLocally(Constants.DEFAULT_THEME.name.toLowerCase())
     }
 
     private fun updateTokenLocally(token: String) {
@@ -117,7 +127,17 @@ class FirestoreUtils(context: Context) {
     }
 
     private fun updateThemeLocally(theme: String) {
-        pref.theme = theme
+
+        //1st update firebase subscription, so user can receive new theme notifications
+        updateThemeSubscription(theme = theme)
+    }
+
+    private fun updateThemeSubscription(theme: String) {
+
+        //unsubscribe from old theme notifications
+        firebaseUtils.unsubscribe(pref.theme)
+
+        firebaseUtils.subscribe(theme)
     }
 
     /**
