@@ -13,6 +13,7 @@ class PrefUtils(context: Context) {
         private const val PREF_TOKEN = "TOKEN"
         private const val PREF_THEME = "THEME"
         private const val PREF_USER_ID = "USER_ID"
+        private const val PREF_CURR_WALLPAPER_URL = "WALLPAPER_URL"
     }
 
     //  User unique ID - unique per app install not per user
@@ -36,6 +37,14 @@ class PrefUtils(context: Context) {
         get() = pref.getString(PREF_THEME, Constants.EMPTY_STRING)!!
         set(_theme) {
             editor.putString(PREF_THEME, _theme.toLowerCase())
+            commit()
+        }
+
+    //  Current wallpaper url
+    var currWallpaperUrl: String
+        get() = pref.getString(PREF_CURR_WALLPAPER_URL, Constants.EMPTY_STRING)!!
+        set(_url) {
+            editor.putString(PREF_CURR_WALLPAPER_URL, _url)
             commit()
         }
 
