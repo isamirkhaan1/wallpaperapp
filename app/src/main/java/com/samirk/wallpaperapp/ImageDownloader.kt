@@ -19,7 +19,7 @@ fun downloadImg(context: Context, url: String) {
         .load(url)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                setWallpaper(bitmap = resource)
+                setWallpaper(context = context, bitmap = resource)
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {

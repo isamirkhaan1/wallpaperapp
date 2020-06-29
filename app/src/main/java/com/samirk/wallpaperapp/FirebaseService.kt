@@ -1,15 +1,21 @@
 package com.samirk.wallpaperapp
 
+import android.content.Intent
+import android.os.Build
+import android.os.Bundle
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.samirk.wallpaperapp.utils.*
+import timber.log.Timber
 
 class FirebaseService : FirebaseMessagingService() {
 
-    private val pref = PrefUtils(context = applicationContext)
 
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
+
+
+        val pref = PrefUtils(context = applicationContext)
 
         //get data
         val data = p0.data.withDefault {
@@ -31,7 +37,16 @@ class FirebaseService : FirebaseMessagingService() {
         if (!isDeviceConnected(context = applicationContext))
             return
 
-        downloadImg(context = applicationContext, url = imgUrl)
+        //start downloading service
+        Intent(applicationContext, WallpaperService::class.java).also {
+
+            val bundle = Bundle().apply {
+                putString(WallpaperService.EXTRA_URL, imgUrl)
+            }
+            it.putExtras(bundle)
+
+            initService(it)
+        }
     }
 
     override fun onDeletedMessages() {
@@ -46,6 +61,14 @@ class FirebaseService : FirebaseMessagingService() {
     }
 
     private fun saveImgUrlLocally(url: String) {
-        pref.currWallpaperUrl = url
+        //   pref.currWallpaperUrl = url
+    }
+
+    private fun initService(intent: Intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent)
+        } else {
+            startService(intent)
+        }
     }
 }
