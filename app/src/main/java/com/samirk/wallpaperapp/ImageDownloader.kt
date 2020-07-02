@@ -20,6 +20,9 @@ import timber.log.Timber
  */
 fun downloadImg(context: Context, url: String) {
 
+    //clear memory
+    Glide.get(context).clearMemory()
+
     Glide.with(context)
         .asBitmap()
         .load(url)

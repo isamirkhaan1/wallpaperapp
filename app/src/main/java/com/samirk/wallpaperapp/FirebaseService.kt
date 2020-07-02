@@ -20,7 +20,7 @@ class FirebaseService : FirebaseMessagingService() {
         }
         val imgUrl = data["url"]!!
 
-        val pref = PrefUtils(context = applicationContext)
+        val pref = PrefUtils.getInstance(context = applicationContext)
         saveImgUrlLocally(pref = pref, url = imgUrl)
 
         //daily update is disabled by user

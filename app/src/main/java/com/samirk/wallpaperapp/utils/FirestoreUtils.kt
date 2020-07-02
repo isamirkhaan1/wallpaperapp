@@ -5,12 +5,13 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.samirk.wallpaperapp.downloadImg
 import timber.log.Timber
 
-class FirestoreUtils(context: Context) {
+class FirestoreUtils(private val context: Context) {
 
     private val firestore = Firebase.firestore
-    private val pref = PrefUtils(context = context)
+    private val pref = PrefUtils.getInstance(context = context)
     private val firebaseUtils = FirebaseUtils(context = context)
 
     companion object {
@@ -18,6 +19,8 @@ class FirestoreUtils(context: Context) {
         private const val COLLECTION_TODAY: String = "today"
         private const val COLLECTION_OLD: String = "old"
         private const val COLLECTION_USERS: String = "users"
+
+        private const val DOC_THEMES = "themes"
 
         private const val KEY_THEME: String = "theme"
         private const val KEY_TOKEN: String = "token"
@@ -96,6 +99,28 @@ class FirestoreUtils(context: Context) {
     }
 
     /**
+     *
+     */
+    fun fetchTodayWallpaper(theme: String) {
+
+        firestore.collection(COLLECTION_TODAY).document(DOC_THEMES)
+            .get().addOnSuccessListener {
+
+                if (it != null) {
+                    val url = it[theme] as String
+                    Timber.d("New wallpaper url: $url")
+
+                    //now download image
+                    downloadImg(context = context, url = url)
+                } else {
+                    Timber.e("No document found for themes/$theme")
+                }
+            }.addOnFailureListener {
+                Timber.e(it)
+            }
+    }
+
+    /**
      * General method for modification in user collection on firestore
      */
     private fun updateUserCollection(
@@ -130,6 +155,9 @@ class FirestoreUtils(context: Context) {
 
         //1st update firebase subscription, so user can receive new theme notifications
         updateThemeSubscription(theme = theme)
+
+        //get latest wallpaper
+        fetchTodayWallpaper(theme)
     }
 
     private fun updateThemeSubscription(theme: String) {

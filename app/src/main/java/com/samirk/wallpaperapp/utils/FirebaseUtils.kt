@@ -9,7 +9,7 @@ import timber.log.Timber
 
 class FirebaseUtils(context: Context) {
 
-    private val pref = PrefUtils(context = context)
+    private val pref = PrefUtils.getInstance(context = context)
 
     fun subscribe(theme: String) {
         FirebaseMessaging.getInstance()
@@ -25,6 +25,10 @@ class FirebaseUtils(context: Context) {
 
     fun unsubscribeToAll() {
         FirebaseInstanceId.getInstance().deleteInstanceId()
+    }
+
+    fun getTodayWallpaper(theme : String){
+
     }
 
     private fun updateThemeLocally(theme: String) {

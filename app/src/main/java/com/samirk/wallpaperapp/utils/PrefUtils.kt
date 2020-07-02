@@ -1,12 +1,16 @@
 package com.samirk.wallpaperapp.utils
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 
-class PrefUtils(context: Context) {
+class PrefUtils private constructor(context: Context) :
+    SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val pref = PreferenceManager.getDefaultSharedPreferences(context)
     private val editor = pref.edit()
+
+    private lateinit var changeListener: SharedPreferences.OnSharedPreferenceChangeListener
 
     companion object {
 
@@ -16,11 +20,31 @@ class PrefUtils(context: Context) {
         private const val PREF_CURR_WALLPAPER_URL = "WALLPAPER_URL"
 
         //singleton
-        /*private var INSTANCE: PrefUtils? = null
+        private var INSTANCE: PrefUtils? = null
         fun getInstance(context: Context): PrefUtils =
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: PrefUtils(context = context)
-            }*/
+            }
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+
+        //invoke callback only on theme value
+        //now don't ask why
+        if (key == PREF_THEME)
+            changeListener.onSharedPreferenceChanged(sharedPreferences, key)
+    }
+
+    fun registerPrefChangeListener(
+        listener: SharedPreferences.OnSharedPreferenceChangeListener
+    ) {
+        changeListener = listener
+        pref.registerOnSharedPreferenceChangeListener(listener)
+    }
+
+    fun unregisterPrefChangeListener() {
+        if (changeListener != null)
+            pref.unregisterOnSharedPreferenceChangeListener(changeListener)
     }
 
     //  User unique ID - unique per app install not per user
