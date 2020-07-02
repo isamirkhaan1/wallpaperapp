@@ -14,16 +14,14 @@ class FirebaseService : FirebaseMessagingService() {
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
 
-
-        val pref = PrefUtils(context = applicationContext)
-
         //get data
         val data = p0.data.withDefault {
             Constants.EMPTY_STRING
         }
         val imgUrl = data["url"]!!
 
-        saveImgUrlLocally(url = imgUrl)
+        val pref = PrefUtils(context = applicationContext)
+        saveImgUrlLocally(pref = pref, url = imgUrl)
 
         //daily update is disabled by user
         if (!pref.getDailyNewWallpaper())
@@ -60,15 +58,18 @@ class FirebaseService : FirebaseMessagingService() {
         FirestoreUtils(context = applicationContext).updateToken(token = p0)
     }
 
-    private fun saveImgUrlLocally(url: String) {
-        //   pref.currWallpaperUrl = url
+    private fun saveImgUrlLocally(pref: PrefUtils, url: String) {
+        pref.currWallpaperUrl = url
     }
 
     private fun initService(intent: Intent) {
+        com.samirk.wallpaperapp.initService(context = applicationContext, intent = intent)
+
+        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(intent)
         } else {
             startService(intent)
-        }
+        }*/
     }
 }

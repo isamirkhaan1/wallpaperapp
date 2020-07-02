@@ -2,10 +2,33 @@ package com.samirk.wallpaperapp.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkInfo
 import android.os.Build
 import androidx.annotation.RequiresApi
+import timber.log.Timber
+
+//  Connectivity listener for >=N
+//  For <N, broadcast receiver is registered in manifest
+
+@RequiresApi(Build.VERSION_CODES.N)
+fun listenToNetworkChanges(context: Context) {
+    val cm = getConnectivityManager(context)
+
+    cm.registerDefaultNetworkCallback(object : ConnectivityManager.NetworkCallback() {
+
+        override fun onAvailable(network: Network) {
+            super.onAvailable(network)
+            Timber.d("connected")
+        }
+
+        override fun onLost(network: Network) {
+            super.onLost(network)
+            Timber.d("lost")
+        }
+    })
+}
 
 fun isDeviceConnected(context: Context): Boolean {
 

@@ -156,9 +156,6 @@ class FirestoreUtils(context: Context) {
                 if (pref.token != Constants.DEFAULT_TOKEN) updateToken(pref.token)
             } else {
                 Timber.e(p0.exception)
-
-                //TODO check internet availability before next try
-                addUser()
             }
         }
     }
@@ -176,9 +173,6 @@ class FirestoreUtils(context: Context) {
                 updateTokenLocally(token = token)
             } else {
                 Timber.e(p0.exception)
-
-                //TODO check internet availability before next try
-                updateToken(token = token)
             }
         }
     }
@@ -196,9 +190,6 @@ class FirestoreUtils(context: Context) {
                 updateThemeLocally(theme = theme)
             } else {
                 Timber.e(p0.exception)
-
-                //TODO check internet availability before next try
-                updateTheme(theme = theme)
             }
         }
     }

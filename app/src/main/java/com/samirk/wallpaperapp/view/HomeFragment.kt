@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.samirk.wallpaperapp.R
 import com.samirk.wallpaperapp.utils.Constants
 import com.samirk.wallpaperapp.utils.FirestoreUtils
+import com.samirk.wallpaperapp.utils.PrefUtils
 import com.samirk.wallpaperapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.home_fragment.*
 
@@ -57,6 +58,24 @@ class HomeFragment : Fragment() {
         tv_color_theme.setOnClickListener(ThemeClickListener(theme = color))
     }
 
+    private fun showLoading(show: Boolean) {
+
+        img_settings.isEnabled = !show
+        tv_settings.isEnabled = !show
+        img_white_theme.isEnabled = !show
+        tv_white_theme.isEnabled = !show
+        img_black_theme.isEnabled = !show
+        tv_black_theme.isEnabled = !show
+        img_color_theme.isEnabled = !show
+        tv_color_theme.isEnabled = !show
+
+        val alpha = if (show) 0.4f else 1f
+        img_settings.alpha = alpha
+        img_white_theme.alpha = alpha
+        img_black_theme.alpha = alpha
+        img_color_theme.alpha = alpha
+    }
+
     /**
      *  Click listener for settings icon and text
      */
@@ -71,7 +90,10 @@ class HomeFragment : Fragment() {
      */
     private inner class ThemeClickListener(val theme: String) : View.OnClickListener {
         override fun onClick(v: View?) {
-            //TODO start loading
+
+            showLoading(show = true)
+
+            //TODO create listener for pref.theme, to identified end time
             FirestoreUtils(context = context!!).updateTheme(theme = theme)
         }
 

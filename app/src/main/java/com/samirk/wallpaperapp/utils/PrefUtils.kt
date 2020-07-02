@@ -14,6 +14,13 @@ class PrefUtils(context: Context) {
         private const val PREF_THEME = "THEME"
         private const val PREF_USER_ID = "USER_ID"
         private const val PREF_CURR_WALLPAPER_URL = "WALLPAPER_URL"
+
+        //singleton
+        /*private var INSTANCE: PrefUtils? = null
+        fun getInstance(context: Context): PrefUtils =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: PrefUtils(context = context)
+            }*/
     }
 
     //  User unique ID - unique per app install not per user

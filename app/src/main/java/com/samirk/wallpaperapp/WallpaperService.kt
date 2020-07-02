@@ -1,7 +1,9 @@
 package com.samirk.wallpaperapp
 
 import android.app.Service
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.IBinder
 import com.samirk.wallpaperapp.utils.Constants
 import com.samirk.wallpaperapp.utils.NOTIFICATION_ID
@@ -47,4 +49,17 @@ class WallpaperService : Service() {
         //  I'm not sure if this step is necessary though
         stopForeground(true)
     }
+}
+
+fun initService(context: Context, intent: Intent) {
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        context.startForegroundService(intent)
+    } else {
+        context.startService(intent)
+    }
+}
+
+fun stopService(context: Context, intent: Intent) {
+    context.stopService(intent)
 }

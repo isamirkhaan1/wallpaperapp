@@ -38,9 +38,6 @@ class FirebaseUtils(context: Context) {
                 Timber.d("topic %s is successfully subscribed", topic)
 
                 updateThemeLocally(theme = topic)
-            } else {
-                //TODO check internet connectivity
-                subscribe(theme = topic)
             }
 
         }
@@ -51,10 +48,6 @@ class FirebaseUtils(context: Context) {
 
             if (p0.isSuccessful) {
                 Timber.d("topic %s is now un-subscribed", topic)
-
-            } else {
-                //TODO check internet connectivity
-                unsubscribe(theme = topic)
             }
         }
     }
