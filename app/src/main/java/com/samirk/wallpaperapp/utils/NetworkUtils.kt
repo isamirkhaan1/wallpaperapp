@@ -20,12 +20,14 @@ fun listenToNetworkChanges(context: Context) {
 
         override fun onAvailable(network: Network) {
             super.onAvailable(network)
-            Timber.d("connected")
+            Timber.d("Device is connected")
+
+            NetworkUtils(context).handleOnConnectionAvailability()
         }
 
         override fun onLost(network: Network) {
             super.onLost(network)
-            Timber.d("lost")
+            Timber.d("Connection is lost")
         }
     })
 }
@@ -54,19 +56,19 @@ private fun isWifiConnectedBelowApi23(context: Context): Boolean {
 @RequiresApi(Build.VERSION_CODES.M)
 private fun isWifiConnectedApi23(context: Context): Boolean {
 
-    val cm = getConnectivityManager(context = context) ?: return false
+    val cm = getConnectivityManager(context = context)
     val network = cm.activeNetwork ?: return false
 
-    return !(cm.getNetworkCapabilities(network)
+    return !(cm!!.getNetworkCapabilities(network)
         .hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED))
 }
 
 @RequiresApi(Build.VERSION_CODES.M)
 private fun isDeviceConnectedApi23(context: Context): Boolean {
-    val cm = getConnectivityManager(context = context) ?: return false
+    val cm = getConnectivityManager(context = context)
     val network = cm.activeNetwork ?: return false
 
-    return cm.getNetworkCapabilities(network)
+    return cm!!.getNetworkCapabilities(network)
         .hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
 }
 
@@ -79,4 +81,28 @@ private fun isDeviceConnectedBelowApi23(context: Context): Boolean {
 
 private fun getConnectivityManager(context: Context): ConnectivityManager {
     return context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+}
+
+class NetworkUtils(private val context: Context) {
+
+    fun handleOnConnectionAvailability() {
+
+        val pref = PrefUtils.getInstance(context)
+
+        //If daily update is off, then do nothing
+        if (!pref.getDailyNewWallpaper())
+            return
+
+        //if user wants update only on non-metered connection
+        // and if it's not available then do nothing
+        if (pref.downloadOnlyWithWifi())
+            if (!isWifiConnected(context))
+                return
+
+        // If latest wallpaper is updated today, then don't update it again
+        val shouldWallpaperBeUpdated = !(TimeUtils().isToday(pref.wallpaperLastUpdated))
+        if (shouldWallpaperBeUpdated)
+            FirestoreUtils(context).fetchTodayWallpaper(null)
+
+    }
 }

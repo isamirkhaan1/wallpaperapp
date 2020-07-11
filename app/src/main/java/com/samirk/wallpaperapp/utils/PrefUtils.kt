@@ -3,6 +3,7 @@ package com.samirk.wallpaperapp.utils
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import java.util.*
 
 class PrefUtils private constructor(context: Context) :
     SharedPreferences.OnSharedPreferenceChangeListener {
@@ -18,6 +19,7 @@ class PrefUtils private constructor(context: Context) :
         private const val PREF_THEME = "THEME"
         private const val PREF_USER_ID = "USER_ID"
         private const val PREF_CURR_WALLPAPER_URL = "WALLPAPER_URL"
+        private const val PREF_LAST_UPDATE = "LAST_UPDATE"
 
         //singleton
         private var INSTANCE: PrefUtils? = null
@@ -43,7 +45,6 @@ class PrefUtils private constructor(context: Context) :
     }
 
     fun unregisterPrefChangeListener() {
-        if (changeListener != null)
             pref.unregisterOnSharedPreferenceChangeListener(changeListener)
     }
 
@@ -67,7 +68,7 @@ class PrefUtils private constructor(context: Context) :
     var theme: String
         get() = pref.getString(PREF_THEME, Constants.EMPTY_STRING)!!
         set(_theme) {
-            editor.putString(PREF_THEME, _theme.toLowerCase())
+            editor.putString(PREF_THEME, _theme.toLowerCase(Locale.ENGLISH))
             commit()
         }
 
@@ -76,6 +77,14 @@ class PrefUtils private constructor(context: Context) :
         get() = pref.getString(PREF_CURR_WALLPAPER_URL, Constants.EMPTY_STRING)!!
         set(_url) {
             editor.putString(PREF_CURR_WALLPAPER_URL, _url)
+            commit()
+        }
+
+    //  Latest wallpaper updated on
+    var wallpaperLastUpdated: Long
+        get() = pref.getLong(PREF_LAST_UPDATE, 0L)
+        set(millis) {
+            editor.putLong(PREF_LAST_UPDATE, millis)
             commit()
         }
 

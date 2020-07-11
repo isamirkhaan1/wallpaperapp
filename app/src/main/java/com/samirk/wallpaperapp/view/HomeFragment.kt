@@ -16,6 +16,7 @@ import com.samirk.wallpaperapp.utils.PrefUtils
 import com.samirk.wallpaperapp.utils.isDeviceConnected
 import com.samirk.wallpaperapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.home_fragment.*
+import java.util.*
 
 class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -69,15 +70,15 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
         img_settings.setOnClickListener(SettingsClickListener())
         tv_settings.setOnClickListener(SettingsClickListener())
 
-        val white = Constants.Theme.WHITE.name.toLowerCase()
+        val white = Constants.Theme.WHITE.name.toLowerCase(Locale.ENGLISH)
         img_white_theme.setOnClickListener(ThemeClickListener(theme = white))
         tv_white_theme.setOnClickListener(ThemeClickListener(theme = white))
 
-        val black = Constants.Theme.BLACK.name.toLowerCase()
+        val black = Constants.Theme.BLACK.name.toLowerCase(Locale.ENGLISH)
         img_black_theme.setOnClickListener(ThemeClickListener(theme = black))
         tv_black_theme.setOnClickListener(ThemeClickListener(theme = black))
 
-        val color = Constants.Theme.COLOR.name.toLowerCase()
+        val color = Constants.Theme.COLOR.name.toLowerCase(Locale.ENGLISH)
         img_color_theme.setOnClickListener(ThemeClickListener(theme = color))
         tv_color_theme.setOnClickListener(ThemeClickListener(theme = color))
     }
@@ -98,12 +99,6 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
         img_color_theme.isEnabled = !show
         tv_color_theme.isEnabled = !show
 
-        /*
-        val alpha = if (show) 0.4f else 1f
-        img_settings.alpha = alpha
-        img_white_theme.alpha = alpha
-        img_black_theme.alpha = alpha
-        img_color_theme.alpha = alpha*/
     }
 
     /**
@@ -134,7 +129,7 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
             if (theme == prefUtils.theme) {
                 Toast.makeText(
                     requireContext(),
-                    "theme ${theme.toUpperCase()} is already selected",
+                    "theme ${theme.toUpperCase(Locale.ENGLISH)} is already selected",
                     Toast.LENGTH_SHORT
                 ).show()
                 return
@@ -142,7 +137,6 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
 
             showLoading(show = true)
 
-            //TODO create listener for pref.theme, to identified end time
             FirestoreUtils(context = context!!).updateTheme(theme = theme)
         }
 

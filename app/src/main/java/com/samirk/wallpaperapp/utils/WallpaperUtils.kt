@@ -20,5 +20,8 @@ fun setWallpaper(context: Context, bitmap: Bitmap) {
         wm.setBitmap(bitmap, null, false, WallpaperManager.FLAG_LOCK)
     }
 
+    //update last update
+    PrefUtils.getInstance(context).wallpaperLastUpdated = getCurrentTimeMillis()
+
     stopService(context, Intent(context, WallpaperService::class.java))
 }

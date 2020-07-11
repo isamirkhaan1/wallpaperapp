@@ -7,6 +7,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.samirk.wallpaperapp.downloadImg
 import timber.log.Timber
+import java.util.*
+import kotlin.collections.HashMap
 
 class FirestoreUtils(private val context: Context) {
 
@@ -37,7 +39,7 @@ class FirestoreUtils(private val context: Context) {
 
         val currTheme =
             if (pref.theme == Constants.EMPTY_STRING)
-                Constants.DEFAULT_THEME.name.toLowerCase()
+                Constants.DEFAULT_THEME.name.toLowerCase(Locale.ENGLISH)
             else
                 pref.theme
 
@@ -101,21 +103,21 @@ class FirestoreUtils(private val context: Context) {
     /**
      *
      */
-    fun fetchTodayWallpaper(theme: String?) {
+    fun fetchTodayWallpaper(_theme: String?) {
 
-        val _theme = theme ?: pref.theme
+        val theme = _theme ?: pref.theme
 
         firestore.collection(COLLECTION_TODAY).document(DOC_THEMES)
             .get().addOnSuccessListener {
 
                 if (it != null) {
-                    val url = it[_theme] as String
+                    val url = it[theme] as String
                     Timber.d("New wallpaper url: $url")
 
                     //now download image
                     downloadImg(context = context, url = url)
                 } else {
-                    Timber.e("No document found for themes/$_theme")
+                    Timber.e("No document found for themes/$theme")
                 }
             }.addOnFailureListener {
                 Timber.e(it)
@@ -146,7 +148,7 @@ class FirestoreUtils(private val context: Context) {
         pref.userId = userId
 
         //save default theme as well
-        updateThemeLocally(Constants.DEFAULT_THEME.name.toLowerCase())
+        updateThemeLocally(Constants.DEFAULT_THEME.name.toLowerCase(Locale.ENGLISH))
     }
 
     private fun updateTokenLocally(token: String) {
