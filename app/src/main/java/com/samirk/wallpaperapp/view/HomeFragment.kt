@@ -1,14 +1,18 @@
 package com.samirk.wallpaperapp.view
 
 import android.content.SharedPreferences
+import android.graphics.PorterDuff
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.samirk.wallpaperapp.BuildConfig
 import com.samirk.wallpaperapp.R
 import com.samirk.wallpaperapp.utils.Constants
 import com.samirk.wallpaperapp.utils.FirestoreUtils
@@ -81,6 +85,16 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
         val color = Constants.Theme.COLOR.name.toLowerCase(Locale.ENGLISH)
         img_color_theme.setOnClickListener(ThemeClickListener(theme = color))
         tv_color_theme.setOnClickListener(ThemeClickListener(theme = color))
+
+
+        //change progressBar color in older versions
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+            view_loading.indeterminateDrawable.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    android.R.color.darker_gray
+                ), PorterDuff.Mode.SRC_IN
+            )
     }
 
     private fun showLoading(show: Boolean) {

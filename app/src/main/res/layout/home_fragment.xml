@@ -4,13 +4,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="8dp">
+        android:layout_height="match_parent">
 
         <!--region title-->
         <TextView
@@ -54,6 +54,15 @@
             app:layout_constraintBottom_toBottomOf="@+id/img_white_theme"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/color_text_primary"
+
+            app:layout_constraintEnd_toEndOf="@id/tv_white_theme"
+            app:layout_constraintStart_toStartOf="@id/tv_white_theme"
+            app:layout_constraintTop_toBottomOf="@id/tv_white_theme" />
+
         <ImageView
             android:id="@+id/img_black_theme"
 
@@ -75,6 +84,16 @@
             app:layout_constraintBottom_toBottomOf="@+id/img_black_theme"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@android:color/white"
+
+            app:layout_constraintEnd_toEndOf="@id/tv_black_theme"
+            app:layout_constraintStart_toStartOf="@id/tv_black_theme"
+            app:layout_constraintTop_toBottomOf="@id/tv_black_theme" />
+
+
         <ImageView
             android:id="@+id/img_color_theme"
 
@@ -90,10 +109,21 @@
             android:id="@+id/tv_color_theme"
 
             style="@style/tv_box_msg"
+            android:textStyle="bold"
             android:text="@string/msg_color_box"
 
             app:layout_constraintBottom_toBottomOf="@+id/img_color_theme"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/color_text_primary"
+
+            app:layout_constraintEnd_toEndOf="@id/tv_color_theme"
+            app:layout_constraintStart_toStartOf="@id/tv_color_theme"
+            app:layout_constraintTop_toBottomOf="@id/tv_color_theme" />
+
         <!--endregion -->
 
         <!--region setting-->
@@ -111,8 +141,9 @@
 
         <TextView
             android:id="@+id/tv_settings"
-
             style="@style/tv_sub_title"
+
+            android:paddingBottom="16dp"
             android:text="@string/tit_settings"
             android:textColor="@color/color_black_shade2"
 
@@ -121,19 +152,35 @@
             app:layout_constraintTop_toBottomOf="@+id/img_settings" />
         <!--endregion-->
 
-        <View
+        <!--        <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+
+                    android:background="#AA000000"
+                    android:visibility="gone"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />-->
+
+        <ProgressBar
             android:id="@+id/view_loading"
             android:layout_width="0dp"
             android:layout_height="0dp"
 
+
             android:background="#AA000000"
+            android:indeterminateTint="@android:color/darker_gray"
+            android:padding="130dp"
+
+
             android:visibility="gone"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
