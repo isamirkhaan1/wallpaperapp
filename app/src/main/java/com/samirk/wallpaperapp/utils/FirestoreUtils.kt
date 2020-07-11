@@ -101,19 +101,21 @@ class FirestoreUtils(private val context: Context) {
     /**
      *
      */
-    fun fetchTodayWallpaper(theme: String) {
+    fun fetchTodayWallpaper(theme: String?) {
+
+        val _theme = theme ?: pref.theme
 
         firestore.collection(COLLECTION_TODAY).document(DOC_THEMES)
             .get().addOnSuccessListener {
 
                 if (it != null) {
-                    val url = it[theme] as String
+                    val url = it[_theme] as String
                     Timber.d("New wallpaper url: $url")
 
                     //now download image
                     downloadImg(context = context, url = url)
                 } else {
-                    Timber.e("No document found for themes/$theme")
+                    Timber.e("No document found for themes/$_theme")
                 }
             }.addOnFailureListener {
                 Timber.e(it)
