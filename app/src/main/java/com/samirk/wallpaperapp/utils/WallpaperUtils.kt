@@ -17,7 +17,7 @@ fun setWallpaper(context: Context, bitmap: Bitmap) {
 
     //update lock screen as well
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        wm.setBitmap(bitmap, null, false, WallpaperManager.FLAG_LOCK)
+       wm.setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK)
     }
 
     //update last update

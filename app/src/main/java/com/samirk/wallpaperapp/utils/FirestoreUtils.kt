@@ -107,6 +107,11 @@ class FirestoreUtils(private val context: Context) {
 
         val theme = _theme ?: pref.theme
 
+        //  On 1st time use, network listener is usually called earlier than adding user
+        //
+        if (theme.isEmpty())
+            return
+
         firestore.collection(COLLECTION_TODAY).document(DOC_THEMES)
             .get().addOnSuccessListener {
 
