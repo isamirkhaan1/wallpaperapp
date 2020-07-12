@@ -1,6 +1,8 @@
 package com.samirk.wallpaperapp.view
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
@@ -26,7 +28,11 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
 
     override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
 
-        handleChangeInSettings()
+        //  This delay make this function act like onChanged()
+        Handler().postDelayed({
+            handleChangeInSettings()
+        }, 50L)
+
         return true
     }
 

@@ -1,7 +1,9 @@
 package com.samirk.wallpaperapp
 
 import android.app.Application
+import android.content.Context
 import android.os.Build
+import androidx.multidex.MultiDex
 import com.samirk.wallpaperapp.utils.FirestoreUtils
 import com.samirk.wallpaperapp.utils.listenToNetworkChanges
 import timber.log.Timber
@@ -25,5 +27,11 @@ class MyApplication : Application() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             listenToNetworkChanges(context = this)
         }
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+
+        MultiDex.install(this)
     }
 }

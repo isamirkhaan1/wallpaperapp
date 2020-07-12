@@ -11,7 +11,9 @@ fun getCurrentTimeMillis() = Date().time
 class TimeUtils {
 
     companion object {
-        private const val MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24
+
+        //TODO make this correct for day
+        private const val MILLIS_IN_A_DAY = 1000 * 60
     }
 
     /**

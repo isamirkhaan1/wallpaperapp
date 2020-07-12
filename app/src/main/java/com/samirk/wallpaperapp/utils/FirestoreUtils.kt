@@ -1,11 +1,15 @@
 package com.samirk.wallpaperapp.utils
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.samirk.wallpaperapp.WallpaperService
 import com.samirk.wallpaperapp.downloadImg
+import com.samirk.wallpaperapp.initService
 import timber.log.Timber
 import java.util.*
 import kotlin.collections.HashMap
@@ -119,8 +123,7 @@ class FirestoreUtils(private val context: Context) {
                     val url = it[theme] as String
                     Timber.d("New wallpaper url: $url")
 
-                    //now download image
-                    downloadImg(context = context, url = url)
+                    startDownloadingService(url = url)
                 } else {
                     Timber.e("No document found for themes/$theme")
                 }
@@ -175,6 +178,19 @@ class FirestoreUtils(private val context: Context) {
         firebaseUtils.unsubscribe(pref.theme)
 
         firebaseUtils.subscribe(theme)
+    }
+
+    private fun startDownloadingService(url: String) {
+
+        Intent(context, WallpaperService::class.java).also {
+
+            val bundle = Bundle().apply {
+                putString(WallpaperService.EXTRA_URL, url)
+            }
+            it.putExtras(bundle)
+
+            initService(context, it)
+        }
     }
 
     /**

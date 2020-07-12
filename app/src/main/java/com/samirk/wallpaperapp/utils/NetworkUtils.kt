@@ -42,6 +42,10 @@ fun isDeviceConnected(context: Context): Boolean {
 }
 
 fun isWifiConnected(context: Context): Boolean {
+
+    if (!isDeviceConnected(context))
+        return false
+
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         isWifiConnectedApi23(context = context)
     } else {
@@ -57,9 +61,9 @@ private fun isWifiConnectedBelowApi23(context: Context): Boolean {
 private fun isWifiConnectedApi23(context: Context): Boolean {
 
     val cm = getConnectivityManager(context = context)
-    val network = cm.activeNetwork ?: return false
+    val network = cm.activeNetwork
 
-    return !(cm!!.getNetworkCapabilities(network)
+    return (cm!!.getNetworkCapabilities(network)
         .hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED))
 }
 

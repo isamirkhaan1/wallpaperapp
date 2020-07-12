@@ -14,12 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.samirk.wallpaperapp.BuildConfig
 import com.samirk.wallpaperapp.R
-import com.samirk.wallpaperapp.utils.Constants
-import com.samirk.wallpaperapp.utils.FirestoreUtils
-import com.samirk.wallpaperapp.utils.PrefUtils
-import com.samirk.wallpaperapp.utils.isDeviceConnected
+import com.samirk.wallpaperapp.utils.*
 import com.samirk.wallpaperapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.home_fragment.*
+import timber.log.Timber
 import java.util.*
 
 class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
