@@ -1,17 +1,13 @@
 package com.samirk.wallpaperapp.utils
 
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.samirk.wallpaperapp.WallpaperService
-import com.samirk.wallpaperapp.initService
 import timber.log.Timber
 import java.util.*
-import kotlin.collections.HashMap
 
 class FirestoreUtils(private val context: Context) {
 
@@ -106,12 +102,10 @@ class FirestoreUtils(private val context: Context) {
     /**
      *
      */
-    fun fetchTodayWallpaperUrl(_theme: String?) {
+    fun fetchTodayWallpaperUrl(theme: String) {
 
-        val theme = _theme ?: pref.theme
-
-        //  On 1st time use, network listener is usually called earlier than adding user
-        //
+        //  On 1st time use, network listener is usually called as MyApplication.class creates
+        //  At that time, default theme is not set
         if (theme.isEmpty())
             return
 
@@ -180,16 +174,7 @@ class FirestoreUtils(private val context: Context) {
     }
 
     private fun startDownloadingService(url: String) {
-
-        Intent(context, WallpaperService::class.java).also {
-
-            val bundle = Bundle().apply {
-                putString(WallpaperService.EXTRA_URL, url)
-            }
-            it.putExtras(bundle)
-
-            initService(context, it)
-        }
+        WallpaperService.start(context = context, url = url)
     }
 
     /**
