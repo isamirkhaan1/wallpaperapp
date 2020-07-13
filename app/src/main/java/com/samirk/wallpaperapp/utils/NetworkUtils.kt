@@ -106,7 +106,7 @@ class NetworkUtils(private val context: Context) {
         // If latest wallpaper is updated today, then don't update it again
         val shouldWallpaperBeUpdated = !(TimeUtils().isToday(pref.wallpaperLastUpdated))
         if (shouldWallpaperBeUpdated)
-            FirestoreUtils(context).fetchTodayWallpaper(null)
+            FirestoreUtils(context).fetchTodayWallpaperUrl(null)
 
     }
 }

@@ -8,7 +8,6 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.samirk.wallpaperapp.WallpaperService
-import com.samirk.wallpaperapp.downloadImg
 import com.samirk.wallpaperapp.initService
 import timber.log.Timber
 import java.util.*
@@ -107,7 +106,7 @@ class FirestoreUtils(private val context: Context) {
     /**
      *
      */
-    fun fetchTodayWallpaper(_theme: String?) {
+    fun fetchTodayWallpaperUrl(_theme: String?) {
 
         val theme = _theme ?: pref.theme
 
@@ -169,7 +168,7 @@ class FirestoreUtils(private val context: Context) {
         updateThemeSubscription(theme = theme)
 
         //get latest wallpaper
-        fetchTodayWallpaper(theme)
+        fetchTodayWallpaperUrl(theme)
     }
 
     private fun updateThemeSubscription(theme: String) {

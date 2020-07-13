@@ -1,12 +1,10 @@
 package com.samirk.wallpaperapp
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.samirk.wallpaperapp.utils.*
-import timber.log.Timber
 
 class FirebaseService : FirebaseMessagingService() {
 

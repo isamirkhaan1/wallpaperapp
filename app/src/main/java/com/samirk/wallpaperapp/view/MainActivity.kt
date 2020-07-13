@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     /**
      * Bind actionbar with nav controller
      */
