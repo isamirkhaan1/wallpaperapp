@@ -20,11 +20,17 @@ class FirestoreUtils(private val context: Context) {
         private const val COLLECTION_TODAY: String = "today"
         private const val COLLECTION_OLD: String = "old"
         private const val COLLECTION_USERS: String = "users"
+        private const val COLLECTION_FEEDBACK: String = "feedback"
 
         private const val DOC_THEMES = "themes"
 
         private const val KEY_THEME: String = "theme"
         private const val KEY_TOKEN: String = "token"
+
+        private const val KEY_USER_ID: String = "user_id"
+        private const val KEY_FIREBASE_TOKEN: String = "firebase_token"
+        private const val KEY_FEEDBACK: String = "feedback"
+        private const val KEY_DATE: String = "date"
     }
 
     /**
@@ -122,6 +128,24 @@ class FirestoreUtils(private val context: Context) {
                 }
             }.addOnFailureListener {
                 Timber.e(it)
+            }
+    }
+
+    fun addUserFeedback(text: String) {
+
+        val hashMap = hashMapOf<String, Any>(
+            KEY_USER_ID to pref.userId,
+            KEY_FIREBASE_TOKEN to pref.token,
+            KEY_FEEDBACK to text,
+            KEY_DATE to getCurrentTimeMillis()
+        )
+
+        val doc = firestore.collection(COLLECTION_FEEDBACK).document()
+        doc.set(hashMap)
+            .addOnSuccessListener {
+                Timber.d("Feedback submitted")
+
+                pref.clearUserFeedback()
             }
     }
 

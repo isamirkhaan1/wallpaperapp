@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory>
+    <PreferenceCategory android:title="@string/tit_general">
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:icon="@drawable/ic_wallpaper"
@@ -19,7 +20,24 @@
     </PreferenceCategory>
 
 
-    <PreferenceCategory>
+    <PreferenceCategory android:title="@string/tit_app_info">
+
+        <EditTextPreference
+            android:dialogIcon="@drawable/ic_feedback"
+            android:dialogMessage="@string/msg_feedback"
+            android:dialogTitle="@string/tit_feedback"
+            android:icon="@drawable/ic_feedback"
+
+            android:key="feedback"
+            android:negativeButtonText="@string/tit_back"
+            android:positiveButtonText="@string/tit_submit"
+
+            android:summary="@string/msg_feedback"
+            android:title="@string/tit_feedback"
+
+
+            />
+
         <EditTextPreference
             android:key="app_version"
             android:selectable="false"

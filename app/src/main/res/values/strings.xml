@@ -12,12 +12,18 @@
 
     <!-- Settings -->
     <string name="tit_settings">Settings</string>
+    <string name="tit_app_info">App Info</string>
+    <string name="tit_general">General</string>
+    <string name="tit_back">Back</string>
+    <string name="tit_submit">Submit</string>
     <string name="tit_daily_new_wallpaper">Daily New Wallpaper</string>
     <string name="tit_wifi_only">WiFi Only</string>
     <string name="tit_about_us">About Us</string>
+    <string name="tit_feedback">Feedback</string>
 
     <string name="msg_wifi_only">Download wallpapers only when the device is connected to WiFi</string>
     <string name="msg_daily_new_wallpaper">Turn ON to receive new wallpaper daily</string>
+    <string name="msg_feedback">Do you have any suggestion for developers?</string>
 
 
     <!-- General text   -->

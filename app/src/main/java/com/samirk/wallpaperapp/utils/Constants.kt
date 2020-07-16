@@ -21,5 +21,6 @@ class Constants {
         //setting prefs keys
         const val PREF_WIFI_ONLY = "wifi_only"
         const val PREF_DAILY_NEW_WALLPAPER = "daily_new_wallpaper"
+        const val PREF_FEEDBACK = "feedback"
     }
 }

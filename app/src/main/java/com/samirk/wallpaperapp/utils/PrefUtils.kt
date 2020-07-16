@@ -45,7 +45,7 @@ class PrefUtils private constructor(context: Context) :
     }
 
     fun unregisterPrefChangeListener() {
-            pref.unregisterOnSharedPreferenceChangeListener(changeListener)
+        pref.unregisterOnSharedPreferenceChangeListener(changeListener)
     }
 
     //  User unique ID - unique per app install not per user
@@ -87,6 +87,22 @@ class PrefUtils private constructor(context: Context) :
             editor.putLong(PREF_LAST_UPDATE, millis)
             commit()
         }
+
+    private var userFeedback: String
+        get() = pref.getString(Constants.PREF_FEEDBACK, Constants.EMPTY_STRING)!!
+        set(value) {
+            editor.putString(Constants.PREF_FEEDBACK, value)
+            commit()
+        }
+
+    /**
+     * This is very odd thing,
+     * p.s. I'm using preferenceEditText for user feedback
+     * It's the easiest I could find
+     */
+    fun clearUserFeedback(){
+        userFeedback = Constants.EMPTY_STRING
+    }
 
     fun isUserCreated() = userId != Constants.DEFAULT_USER_ID
 
