@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.samirk.wallpaperapp.R
+import com.samirk.wallpaperapp.utils.Analytics
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBar()
         setupNavController()
+
+        Analytics.getInstance().logEvent(Analytics.EVENT_APP_OPEN)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         bindActionBarWithNavController()
     }
 
-    private fun setupNavController(){
+    private fun setupNavController() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
 

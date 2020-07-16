@@ -8,10 +8,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.samirk.wallpaperapp.R
-import com.samirk.wallpaperapp.utils.Constants
-import com.samirk.wallpaperapp.utils.FirestoreUtils
-import com.samirk.wallpaperapp.utils.NetworkUtils
-import com.samirk.wallpaperapp.utils.PrefUtils
+import com.samirk.wallpaperapp.utils.*
+import timber.log.Timber
 
 class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
 
@@ -22,10 +20,16 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
 
+        Analytics.getInstance().logEvent(Analytics.EVENT_SETTINGS_OPEN)
+
         prefUtils = PrefUtils.getInstance(requireContext())
 
         etFeedback = findPreference<EditTextPreference>(Constants.PREF_FEEDBACK)!!
         etFeedback.onPreferenceChangeListener = this
+        etFeedback.setOnPreferenceClickListener {
+            Analytics.getInstance().logEvent(Analytics.EVENT_FEEDBACK_CLICK)
+            false
+        }
 
         findPreference<SwitchPreferenceCompat>(Constants.PREF_WIFI_ONLY)!!
             .onPreferenceChangeListener = this
@@ -43,6 +47,19 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
         //  This delay make this function act like onChanged()
             Handler().postDelayed({
                 handleChangeInSettings()
+
+                val event = if (preference!!.key == Constants.PREF_DAILY_NEW_WALLPAPER)
+                    Analytics.EVENT_DAILY_WALLPAPER_SETTINGS
+                else
+                    Analytics.EVENT_WIFI_SETTINGS_UPDATE
+                Analytics.getInstance().logEvent(event, newValue as String)
+
+                val prop = if (preference!!.key == Constants.PREF_DAILY_NEW_WALLPAPER)
+                    Analytics.PROP_DAILY_WALLPAPER
+                else
+                    Analytics.PROP_WIFI_ONLY
+                Analytics.getInstance().setUserProperty(prop, newValue as String)
+
             }, 50L)
 
         return true

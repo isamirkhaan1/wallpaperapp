@@ -54,6 +54,8 @@ class PrefUtils private constructor(context: Context) :
         set(_userId) {
             editor.putLong(PREF_USER_ID, _userId)
             commit()
+
+            Analytics.getInstance().setUserId(_userId as String)
         }
 
     //  Firebase token - device ID
@@ -70,6 +72,8 @@ class PrefUtils private constructor(context: Context) :
         set(_theme) {
             editor.putString(PREF_THEME, _theme.toLowerCase(Locale.ENGLISH))
             commit()
+
+            Analytics.getInstance().setUserProperty(Analytics.PROP_THEME, _theme)
         }
 
     //  Current wallpaper url
@@ -93,6 +97,9 @@ class PrefUtils private constructor(context: Context) :
         set(value) {
             editor.putString(Constants.PREF_FEEDBACK, value)
             commit()
+
+            if(value != Constants.EMPTY_STRING)
+                Analytics.getInstance().logEvent(Analytics.EVENT_FEEDBACK_SUBMIT)
         }
 
     /**
@@ -100,7 +107,7 @@ class PrefUtils private constructor(context: Context) :
      * p.s. I'm using preferenceEditText for user feedback
      * It's the easiest I could find
      */
-    fun clearUserFeedback(){
+    fun clearUserFeedback() {
         userFeedback = Constants.EMPTY_STRING
     }
 

@@ -58,6 +58,8 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
         //  This callback means theme value has been updated
         //  i.e. we can stop loading scree
         showLoading(false)
+
+        Analytics.getInstance().logEvent(Analytics.EVENT_THEME_CHANGE, prefUtils.theme)
     }
 
     /**

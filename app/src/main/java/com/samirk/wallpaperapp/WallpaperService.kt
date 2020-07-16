@@ -6,10 +6,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
-import com.samirk.wallpaperapp.utils.Constants
-import com.samirk.wallpaperapp.utils.NotificationUtils
-import com.samirk.wallpaperapp.utils.PrefUtils
-import com.samirk.wallpaperapp.utils.createNotification
+import com.samirk.wallpaperapp.utils.*
 import timber.log.Timber
 
 /**
@@ -38,6 +35,8 @@ class WallpaperService : Service() {
             } else {
                 context.startService(intent)
             }
+
+            Analytics.getInstance().logEvent(Analytics.EVENT_WALLPAPER_CHANGE)
         }
 
         /**
