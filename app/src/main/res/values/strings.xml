@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Amazing Wallpaper</string>
+    <string name="app_name">Wallpapers</string>
 
     <!-- Home Fragment  -->
     <string name="tit_choose_theme">Choose Theme</string>

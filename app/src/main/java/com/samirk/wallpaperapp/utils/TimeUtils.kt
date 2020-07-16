@@ -12,8 +12,7 @@ class TimeUtils {
 
     companion object {
 
-        //TODO make this correct for day
-        private const val MILLIS_IN_A_DAY = 1000 * 60
+        private const val MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24
     }
 
     /**
