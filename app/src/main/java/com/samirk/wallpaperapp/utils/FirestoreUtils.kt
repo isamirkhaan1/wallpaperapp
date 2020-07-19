@@ -119,7 +119,7 @@ class FirestoreUtils(private val context: Context) {
             .get().addOnSuccessListener {
 
                 if (it != null) {
-                    val url = it[theme] as String
+                    val url = it[theme].toString()
                     Timber.d("New wallpaper url: $url")
 
                     startDownloadingService(url = url)

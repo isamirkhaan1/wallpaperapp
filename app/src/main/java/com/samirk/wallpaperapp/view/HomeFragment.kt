@@ -40,6 +40,12 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
         prefUtils = PrefUtils.getInstance(requireContext())
 
         initUi()
+
+        //  Show intro to 1st time users
+        if (prefUtils.firstTimeUser) {
+            findNavController().navigate(R.id.action_home_to_appIntro)
+            prefUtils.firstTimeUser = false
+        }
     }
 
     override fun onResume() {
@@ -143,7 +149,7 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
             if (theme == prefUtils.theme) {
                 Toast.makeText(
                     requireContext(),
-                    "theme ${theme.toUpperCase(Locale.ENGLISH)} is already selected",
+                    "This is your current theme, please try another one",
                     Toast.LENGTH_SHORT
                 ).show()
                 return

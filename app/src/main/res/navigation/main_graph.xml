@@ -14,9 +14,21 @@
             android:id="@+id/action_home_to_settings"
             app:destination="@id/settingsFragment"
             app:popUpTo="@+id/homeFragment" />
+        <action
+            android:id="@+id/action_home_to_appIntro"
+            app:destination="@id/appIntroActivity" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.samirk.wallpaperapp.view.SettingsFragment"
-        android:label="@string/tit_settings" />
+        android:label="@string/tit_settings" >
+        <action
+            android:id="@+id/action_settings_to_appIntro"
+            app:destination="@id/appIntroActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/appIntroActivity"
+        android:name="com.samirk.wallpaperapp.view.AppIntroActivity"
+        android:label="activity_app_intro"
+        tools:layout="@layout/activity_app_intro" />
 </navigation>

@@ -3,13 +3,13 @@ package com.samirk.wallpaperapp.view
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.samirk.wallpaperapp.R
 import com.samirk.wallpaperapp.utils.*
-import timber.log.Timber
 
 class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
 
@@ -31,6 +31,11 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
             false
         }
 
+        findPreference<Preference>("help")!!.setOnPreferenceClickListener {
+            findNavController().navigate(R.id.action_settings_to_appIntro)
+            false
+        }
+
         findPreference<SwitchPreferenceCompat>(Constants.PREF_WIFI_ONLY)!!
             .onPreferenceChangeListener = this
 
@@ -42,7 +47,7 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
     override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
 
         if (preference is EditTextPreference)
-            sendFeedback(text = newValue as String)
+            sendFeedback(text = newValue.toString())
         else
         //  This delay make this function act like onChanged()
             Handler().postDelayed({
@@ -52,13 +57,13 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
                     Analytics.EVENT_DAILY_WALLPAPER_SETTINGS
                 else
                     Analytics.EVENT_WIFI_SETTINGS_UPDATE
-                Analytics.getInstance().logEvent(event, newValue as String)
+                Analytics.getInstance().logEvent(event, newValue.toString())
 
                 val prop = if (preference!!.key == Constants.PREF_DAILY_NEW_WALLPAPER)
                     Analytics.PROP_DAILY_WALLPAPER
                 else
                     Analytics.PROP_WIFI_ONLY
-                Analytics.getInstance().setUserProperty(prop, newValue as String)
+                Analytics.getInstance().setUserProperty(prop, newValue.toString())
 
             }, 50L)
 

@@ -20,6 +20,7 @@ class PrefUtils private constructor(context: Context) :
         private const val PREF_USER_ID = "USER_ID"
         private const val PREF_CURR_WALLPAPER_URL = "WALLPAPER_URL"
         private const val PREF_LAST_UPDATE = "LAST_UPDATE"
+        private const val PREF_1ST_TIME = "1ST_TIME"
 
         //singleton
         private var INSTANCE: PrefUtils? = null
@@ -48,6 +49,13 @@ class PrefUtils private constructor(context: Context) :
         pref.unregisterOnSharedPreferenceChangeListener(changeListener)
     }
 
+    var firstTimeUser : Boolean
+    get() = pref.getBoolean(PREF_1ST_TIME, true)
+    set(value) {
+        editor.putBoolean(PREF_1ST_TIME, false)
+        commit()
+    }
+
     //  User unique ID - unique per app install not per user
     var userId: Long
         get() = pref.getLong(PREF_USER_ID, Constants.DEFAULT_USER_ID)
@@ -55,7 +63,7 @@ class PrefUtils private constructor(context: Context) :
             editor.putLong(PREF_USER_ID, _userId)
             commit()
 
-            Analytics.getInstance().setUserId(_userId as String)
+            Analytics.getInstance().setUserId(_userId.toString())
         }
 
     //  Firebase token - device ID

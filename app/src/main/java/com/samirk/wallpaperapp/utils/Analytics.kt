@@ -22,6 +22,7 @@ class Analytics private constructor() {
         const val EVENT_FEEDBACK_CLICK = "feedback_click"
         const val EVENT_FEEDBACK_SUBMIT = "feedback_submit"
         const val EVENT_WALLPAPER_CHANGE = "wallpaper_change"
+        const val EVENT_APP_INTRO = "app_intro"
 
         const val PROP_THEME = "theme"
         const val PROP_DAILY_WALLPAPER = "daily_wallpaper_enabled"

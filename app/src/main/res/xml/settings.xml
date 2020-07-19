@@ -22,6 +22,12 @@
 
     <PreferenceCategory android:title="@string/tit_app_info">
 
+
+        <Preference
+            android:key="help"
+            android:summary="Learn how to use this app"
+            android:title="Help" />
+
         <EditTextPreference
             android:dialogIcon="@drawable/ic_feedback"
             android:dialogMessage="@string/msg_feedback"
@@ -34,11 +40,9 @@
 
             android:summary="@string/msg_feedback"
             android:title="@string/tit_feedback"
-
-
             />
 
-        <EditTextPreference
+        <Preference
             android:key="app_version"
             android:selectable="false"
             android:summary="@string/msg_version"

@@ -14,4 +14,10 @@
     <color name="color_black_shade2">#323232</color>
     <color name="color_black_shade3">#4c4c4c</color>
     <color name="color_black_shade4">#CCCCCC</color>
+
+    <color name="color_purple">#ba68c8</color>
+    <color name="color_red">#ec1c24</color>
+    <color name="color_blue">#03a9f4</color>
+    <color name="color_green">#0ed145</color>
+    <color name="color_yellow">#FFC107</color>
 </resources>

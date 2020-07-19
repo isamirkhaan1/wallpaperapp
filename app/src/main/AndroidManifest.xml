@@ -18,7 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".view.AppIntroActivity"
+            android:theme="@style/Theme.Intro">
 
+        </activity>
 
         <receiver
             android:name=".ConnectivityReceiver"

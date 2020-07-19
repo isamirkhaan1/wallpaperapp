@@ -5,8 +5,8 @@
     <string name="tit_choose_theme">Choose Theme</string>
 
     <string name="msg_choose_theme">What kind of wallpapers do you prefer</string>
-    <string name="msg_white_box">I prefer white wallpapers</string>
-    <string name="msg_black_box">I prefer black wallpapers</string>
+    <string name="msg_white_box">I prefer light wallpapers</string>
+    <string name="msg_black_box">I prefer dark wallpapers</string>
     <string name="msg_color_box">I prefer colored wallpapers</string>
 
 
@@ -32,4 +32,18 @@
 
     <string name="tit_notification_tray">Updating Wallpaper</string>
     <string name="msg_notification_tray">Wallpaper is updating...</string>
+
+
+    <!--    App Intro   -->
+    <string name="tit_how_to_use">How To Use</string>
+    <string name="msg_how_to_use">In the next few slides, you will learn how to get the best out of this app</string>
+    <string name="tit_intro_choose_theme">Choose Theme</string>
+    <string name="msg_intro_choose_theme">Choose whether you like dark, light or colored wallpapers</string>
+    <string name="tit_daily_wallpaper">Daily Wallpapers</string>
+    <string name="msg_daily_wallpaper">Once you select a theme, everyday you will get an amazing HD wallpaper</string>
+    <string name="tit_unlimited_wallpapers">Unlimited Wallpapers</string>
+    <string name="msg_unlimited_wallpapers">Best images are daily selected from a collection of unlimited for your device wallpaper</string>
+    <string name="tit_customization">Customization</string>
+    <string name="msg_customization">You can stop auto-daily wallpaper changing from settings. It also provides other customizations</string>
+
 </resources>
