@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="@string/tit_general">
-        <SwitchPreferenceCompat
+      <!--  <SwitchPreferenceCompat
             android:defaultValue="true"
             android:icon="@drawable/ic_wallpaper"
             android:key="daily_new_wallpaper"
             android:summary="@string/msg_daily_new_wallpaper"
             android:title="@string/tit_daily_new_wallpaper" />
-
+-->
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:icon="@drawable/ic_wifi"
@@ -17,16 +17,6 @@
             android:summary="@string/msg_wifi_only"
             android:title="@string/tit_wifi_only" />
 
-    </PreferenceCategory>
-
-
-    <PreferenceCategory android:title="@string/tit_app_info">
-
-
-        <Preference
-            android:key="help"
-            android:summary="Learn how to use this app"
-            android:title="Help" />
 
         <EditTextPreference
             android:dialogIcon="@drawable/ic_feedback"
@@ -41,6 +31,11 @@
             android:summary="@string/msg_feedback"
             android:title="@string/tit_feedback"
             />
+
+        <Preference
+            android:key="help"
+            android:summary="Learn how to use this app"
+            android:title="Help" />
 
         <Preference
             android:key="app_version"

@@ -16,19 +16,6 @@ class FirebaseService : FirebaseMessagingService() {
         }
         val imgUrl = data["url"]!!
 
-        //daily update is disabled by user
-        val pref = PrefUtils.getInstance(context = applicationContext)
-        if (!pref.getDailyNewWallpaper())
-            return
-
-        //'Download only with WiFi' is enabled but WiFi is not connected
-        if (pref.downloadOnlyWithWifi() && !isWifiConnected(context = applicationContext))
-            return
-
-        //make sure internet is connected
-        if (!isDeviceConnected(context = applicationContext))
-            return
-
         //start downloading service
         WallpaperService.start(applicationContext, imgUrl)
     }

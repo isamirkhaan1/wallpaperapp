@@ -38,10 +38,6 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
 
         findPreference<SwitchPreferenceCompat>(Constants.PREF_WIFI_ONLY)!!
             .onPreferenceChangeListener = this
-
-        findPreference<SwitchPreferenceCompat>(Constants.PREF_DAILY_NEW_WALLPAPER)!!
-            .onPreferenceChangeListener = this
-
     }
 
     override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
@@ -53,16 +49,10 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
             Handler().postDelayed({
                 handleChangeInSettings()
 
-                val event = if (preference!!.key == Constants.PREF_DAILY_NEW_WALLPAPER)
-                    Analytics.EVENT_DAILY_WALLPAPER_SETTINGS
-                else
-                    Analytics.EVENT_WIFI_SETTINGS_UPDATE
+                val event = Analytics.EVENT_WIFI_SETTINGS_UPDATE
                 Analytics.getInstance().logEvent(event, newValue.toString())
 
-                val prop = if (preference!!.key == Constants.PREF_DAILY_NEW_WALLPAPER)
-                    Analytics.PROP_DAILY_WALLPAPER
-                else
-                    Analytics.PROP_WIFI_ONLY
+                val prop = Analytics.PROP_WIFI_ONLY
                 Analytics.getInstance().setUserProperty(prop, newValue.toString())
 
             }, 50L)

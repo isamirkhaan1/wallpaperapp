@@ -54,7 +54,7 @@ fun isWifiConnected(context: Context): Boolean {
 }
 
 private fun isWifiConnectedBelowApi23(context: Context): Boolean {
-    return getConnectivityManager(context = context).isActiveNetworkMetered
+    return !getConnectivityManager(context = context).isActiveNetworkMetered
 }
 
 @RequiresApi(Build.VERSION_CODES.M)
@@ -93,19 +93,11 @@ class NetworkUtils(private val context: Context) {
 
         val pref = PrefUtils.getInstance(context)
 
-        //If daily update is off, then do nothing
-        if (!pref.getDailyNewWallpaper())
-            return
-
         //if user wants update only on non-metered connection
         // and if it's not available then do nothing
-        if (pref.downloadOnlyWithWifi())
-            if (!isWifiConnected(context))
+        if (pref.downloadOnlyWithWifi() && !isWifiConnected(context))
                 return
 
-        // If latest wallpaper is updated today, then don't update it again
-        val shouldWallpaperBeUpdated = !(TimeUtils().isToday(pref.wallpaperLastUpdated))
-        if (shouldWallpaperBeUpdated)
             FirestoreUtils(context).fetchTodayWallpaperUrl(pref.theme)
 
     }

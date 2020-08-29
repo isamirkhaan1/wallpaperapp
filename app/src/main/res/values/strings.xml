@@ -28,7 +28,7 @@
 
     <!-- General text   -->
     <string name="tit_version">Version</string>
-    <string name="msg_version">1.0.0</string>
+    <string name="msg_version">1.0.1</string>
 
     <string name="tit_notification_tray">Updating Wallpaper</string>
     <string name="msg_notification_tray">Wallpaper is updating...</string>
