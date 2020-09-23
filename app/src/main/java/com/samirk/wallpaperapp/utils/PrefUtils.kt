@@ -57,10 +57,10 @@ class PrefUtils private constructor(context: Context) :
     }
 
     //  User unique ID - unique per app install not per user
-    var userId: Long
-        get() = pref.getLong(PREF_USER_ID, Constants.DEFAULT_USER_ID)
+    var userId: String
+        get() = pref.getString(PREF_USER_ID, Constants.EMPTY_STRING)!!
         set(_userId) {
-            editor.putLong(PREF_USER_ID, _userId)
+            editor.putString(PREF_USER_ID, _userId)
             commit()
 
             Analytics.getInstance().setUserId(_userId.toString())
@@ -119,7 +119,7 @@ class PrefUtils private constructor(context: Context) :
         userFeedback = Constants.EMPTY_STRING
     }
 
-    fun isUserCreated() = userId != Constants.DEFAULT_USER_ID
+    fun isUserCreated() = userId != Constants.EMPTY_STRING
 
     fun isTokenGenerated() = token != Constants.DEFAULT_TOKEN
 

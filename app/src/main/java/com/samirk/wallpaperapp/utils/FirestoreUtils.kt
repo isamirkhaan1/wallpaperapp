@@ -37,10 +37,7 @@ class FirestoreUtils(private val context: Context) {
      * -    Add new user to firestore,
      * -    Users are uniquely identify by time (milliseconds in long)
      */
-    fun addUser() {
-
-        //  Create user ONLY once
-        if (pref.isUserCreated()) return
+    fun addUser(uid: String) {
 
         val currTheme =
             if (pref.theme == Constants.EMPTY_STRING)
@@ -53,10 +50,9 @@ class FirestoreUtils(private val context: Context) {
             KEY_TOKEN to pref.token
         )
 
-        val uniqueId = getCurrentTimeMillis()
-        val completeListener = AddUserListener(uniqueId = uniqueId)
+        val completeListener = AddUserListener(uid = uid)
         updateUserCollection(
-            uniqueId = uniqueId.toString(),
+            uid = uid,
             hashMap = data, completeListener = completeListener
         )
     }
@@ -153,11 +149,11 @@ class FirestoreUtils(private val context: Context) {
      * General method for modification in user collection on firestore
      */
     private fun updateUserCollection(
-        uniqueId: String, hashMap: HashMap<String, Any>,
+        uid: String, hashMap: HashMap<String, Any>,
         completeListener: OnCompleteListener<Void>
     ) {
 
-        val doc = firestore.collection(COLLECTION_USERS).document(uniqueId)
+        val doc = firestore.collection(COLLECTION_USERS).document(uid)
 
         /*
         *   Use set method for adding new user
@@ -169,8 +165,8 @@ class FirestoreUtils(private val context: Context) {
             doc.update(hashMap).addOnCompleteListener(completeListener)
     }
 
-    private fun addUserLocally(userId: Long) {
-        pref.userId = userId
+    private fun addUidLocally(uId: String) {
+        pref.userId = uId
 
         //save default theme as well
         updateThemeLocally(Constants.DEFAULT_THEME.name.toLowerCase(Locale.ENGLISH))
@@ -204,14 +200,14 @@ class FirestoreUtils(private val context: Context) {
     /**
      *  Listener for adding user to firestore
      */
-    private inner class AddUserListener(private val uniqueId: Long) : OnCompleteListener<Void> {
+    private inner class AddUserListener(private val uid: String) : OnCompleteListener<Void> {
 
         override fun onComplete(p0: Task<Void>) {
 
             if (p0.isSuccessful) {
                 Timber.d("User added to firestore")
 
-                addUserLocally(uniqueId)
+                addUidLocally(uid)
 
                 //  After creating user, now update user device ID on firestore
                 if (pref.token != Constants.DEFAULT_TOKEN) updateToken(pref.token)
