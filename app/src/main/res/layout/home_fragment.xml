@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:scrollbars="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,8 +87,9 @@
             android:textColor="@color/color_black_shade4"
             android:text="@string/tit_black_theme"
 
-            app:layout_constraintBottom_toTopOf="@+id/tv_black_theme_msg"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_black_theme_msg" />
 
         <TextView
             android:id="@+id/tv_black_theme_msg"
@@ -96,8 +98,9 @@
             android:textColor="@color/color_black_shade4"
             android:text="@string/msg_black_box"
 
-            app:layout_constraintBottom_toBottomOf="@+id/img_black_theme"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/img_black_theme" />
 
 
         <ImageView
@@ -118,7 +121,7 @@
             android:text="@string/tit_color_theme"
             android:textColor="@color/color_black_shade5"
 
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/tv_color_theme_msg" />
 
@@ -130,7 +133,7 @@
             android:text="@string/msg_color_box"
 
 
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/img_color_theme" />
 
