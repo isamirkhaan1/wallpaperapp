@@ -3,6 +3,7 @@ package com.samirk.wallpaperapp.utils
 import android.content.Context
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.Source
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.samirk.wallpaperapp.WallpaperService
@@ -112,7 +113,7 @@ class FirestoreUtils(private val context: Context) {
             return
 
         firestore.collection(COLLECTION_TODAY).document(DOC_THEMES)
-            .get().addOnSuccessListener {
+            .get(Source.SERVER).addOnSuccessListener {
 
                 if (it != null) {
                     val url = it[theme].toString()
