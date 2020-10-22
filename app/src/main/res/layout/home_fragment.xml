@@ -5,12 +5,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:scrollbars="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <!--region title-->
         <TextView
@@ -46,22 +46,27 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_sub_title" />
 
         <TextView
-            android:id="@+id/tv_white_theme"
+            android:id="@+id/tv_white_theme_tit"
+
+            style="@style/tv_box_tit"
+            android:textColor="@color/color_black_shade2"
+            android:text="@string/tit_white_theme"
+
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_white_theme_msg" />
+
+        <TextView
+            android:id="@+id/tv_white_theme_msg"
 
             style="@style/tv_box_msg"
+            android:textColor="@color/color_black_shade3"
             android:text="@string/msg_white_box"
 
-            app:layout_constraintBottom_toBottomOf="@+id/img_white_theme"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/img_white_theme" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:background="@color/color_text_primary"
-
-            app:layout_constraintEnd_toEndOf="@id/tv_white_theme"
-            app:layout_constraintStart_toStartOf="@id/tv_white_theme"
-            app:layout_constraintTop_toBottomOf="@id/tv_white_theme" />
 
         <ImageView
             android:id="@+id/img_black_theme"
@@ -75,23 +80,24 @@
             app:layout_constraintTop_toBottomOf="@+id/img_white_theme" />
 
         <TextView
-            android:id="@+id/tv_black_theme"
+            android:id="@+id/tv_black_theme_tit"
+
+            style="@style/tv_box_tit"
+            android:textColor="@color/color_black_shade4"
+            android:text="@string/tit_black_theme"
+
+            app:layout_constraintBottom_toTopOf="@+id/tv_black_theme_msg"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_black_theme_msg"
 
             style="@style/tv_box_msg"
+            android:textColor="@color/color_black_shade4"
             android:text="@string/msg_black_box"
-            android:textColor="@android:color/white"
 
             app:layout_constraintBottom_toBottomOf="@+id/img_black_theme"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:background="@android:color/white"
-
-            app:layout_constraintEnd_toEndOf="@id/tv_black_theme"
-            app:layout_constraintStart_toStartOf="@id/tv_black_theme"
-            app:layout_constraintTop_toBottomOf="@id/tv_black_theme" />
 
 
         <ImageView
@@ -106,23 +112,28 @@
             app:layout_constraintTop_toBottomOf="@+id/img_black_theme" />
 
         <TextView
-            android:id="@+id/tv_color_theme"
+            android:id="@+id/tv_color_theme_tit"
+
+            style="@style/tv_box_tit"
+            android:text="@string/tit_color_theme"
+            android:textColor="@color/color_black_shade5"
+
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_color_theme_msg" />
+
+        <TextView
+            android:id="@+id/tv_color_theme_msg"
 
             style="@style/tv_box_msg"
-            android:textStyle="bold"
+            android:textColor="@color/color_black_shade4"
             android:text="@string/msg_color_box"
 
-            app:layout_constraintBottom_toBottomOf="@+id/img_color_theme"
-            app:layout_constraintStart_toStartOf="parent" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:background="@color/color_text_primary"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/img_color_theme" />
 
-            app:layout_constraintEnd_toEndOf="@id/tv_color_theme"
-            app:layout_constraintStart_toStartOf="@id/tv_color_theme"
-            app:layout_constraintTop_toBottomOf="@id/tv_color_theme" />
 
         <!--endregion -->
 
@@ -145,24 +156,13 @@
 
             android:paddingBottom="16dp"
             android:text="@string/tit_settings"
-            android:textColor="@color/color_black_shade2"
+            android:textColor="@color/color_black_shade3"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_settings" />
         <!--endregion-->
 
-        <!--        <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-
-                    android:background="#AA000000"
-                    android:visibility="gone"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />-->
 
         <ProgressBar
             android:id="@+id/view_loading"
@@ -171,7 +171,7 @@
 
 
             android:background="#AA000000"
-            android:indeterminateTint="@android:color/darker_gray"
+            android:indeterminateTint="@color/color_black_shade5"
             android:padding="130dp"
 
 

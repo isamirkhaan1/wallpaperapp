@@ -12,12 +12,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.samirk.wallpaperapp.BuildConfig
 import com.samirk.wallpaperapp.R
 import com.samirk.wallpaperapp.utils.*
 import com.samirk.wallpaperapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.home_fragment.*
-import timber.log.Timber
 import java.util.*
 
 class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
@@ -82,15 +80,15 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
 
         val white = Constants.Theme.WHITE.name.toLowerCase(Locale.ENGLISH)
         img_white_theme.setOnClickListener(ThemeClickListener(theme = white))
-        tv_white_theme.setOnClickListener(ThemeClickListener(theme = white))
+        tv_white_theme_msg.setOnClickListener(ThemeClickListener(theme = white))
 
         val black = Constants.Theme.BLACK.name.toLowerCase(Locale.ENGLISH)
         img_black_theme.setOnClickListener(ThemeClickListener(theme = black))
-        tv_black_theme.setOnClickListener(ThemeClickListener(theme = black))
+        tv_black_theme_msg.setOnClickListener(ThemeClickListener(theme = black))
 
         val color = Constants.Theme.COLOR.name.toLowerCase(Locale.ENGLISH)
         img_color_theme.setOnClickListener(ThemeClickListener(theme = color))
-        tv_color_theme.setOnClickListener(ThemeClickListener(theme = color))
+        tv_color_theme_msg.setOnClickListener(ThemeClickListener(theme = color))
 
 
         //change progressBar color in older versions
@@ -113,11 +111,11 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
         img_settings.isEnabled = !show
         tv_settings.isEnabled = !show
         img_white_theme.isEnabled = !show
-        tv_white_theme.isEnabled = !show
+        tv_white_theme_msg.isEnabled = !show
         img_black_theme.isEnabled = !show
-        tv_black_theme.isEnabled = !show
+        tv_black_theme_msg.isEnabled = !show
         img_color_theme.isEnabled = !show
-        tv_color_theme.isEnabled = !show
+        tv_color_theme_msg.isEnabled = !show
 
     }
 

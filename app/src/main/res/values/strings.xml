@@ -3,11 +3,14 @@
 
     <!-- Home Fragment  -->
     <string name="tit_choose_theme">Choose Theme</string>
+    <string name="tit_white_theme">White Theme</string>
+    <string name="tit_black_theme">Black Theme</string>
+    <string name="tit_color_theme">Color Theme</string>
 
     <string name="msg_choose_theme">What kind of wallpapers do you prefer</string>
-    <string name="msg_white_box">I prefer light wallpapers</string>
-    <string name="msg_black_box">I prefer dark wallpapers</string>
-    <string name="msg_color_box">I prefer colored wallpapers</string>
+    <string name="msg_white_box">You prefer light wallpapers?</string>
+    <string name="msg_black_box">You prefer dark wallpapers?</string>
+    <string name="msg_color_box">You prefer colored wallpapers?</string>
 
 
     <!-- Settings -->
@@ -31,7 +34,7 @@
     <string name="msg_version">1.0.1</string>
 
     <string name="tit_notification_tray">Updating Wallpaper</string>
-    <string name="msg_notification_tray">Wallpaper is updating...</string>
+    <string name="msg_notification_tray">"Wallpaper is updating..."</string>
 
 
     <!--    App Intro   -->
