@@ -46,7 +46,7 @@ class AppIntroActivity : IntroActivity() {
             .title(getString(R.string.tit_customization))
             .description(getString(R.string.msg_customization))
             .image(R.drawable.ic_sticker)
-            .background(R.color.color_yellow)
+            .background(R.color.color_purple)
             .build()
 
 

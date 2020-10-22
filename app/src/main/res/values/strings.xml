@@ -38,15 +38,15 @@
 
 
     <!--    App Intro   -->
-    <string name="tit_how_to_use">How To Use</string>
-    <string name="msg_how_to_use">In the next few slides, you will learn how to get the best out of this app</string>
-    <string name="tit_intro_choose_theme">Choose Theme</string>
-    <string name="msg_intro_choose_theme">Choose whether you like dark, light or colored wallpapers</string>
-    <string name="tit_daily_wallpaper">Daily Wallpapers</string>
-    <string name="msg_daily_wallpaper">Once you select a theme, everyday you will get an amazing HD wallpaper</string>
-    <string name="tit_unlimited_wallpapers">Unlimited Wallpapers</string>
-    <string name="msg_unlimited_wallpapers">Best images are daily selected from a collection of unlimited for your device wallpaper</string>
+    <string name="tit_how_to_use">Welcome</string>
+    <string name="msg_how_to_use">Learn how to get the best out of this app</string>
+    <string name="tit_intro_choose_theme">Select Theme</string>
+    <string name="msg_intro_choose_theme">Do you prefer dark, light or colored wallpapers? Select any theme</string>
+    <string name="tit_daily_wallpaper">Daily Wallpaper</string>
+    <string name="msg_daily_wallpaper">Now you will daily receive an amazing HD wallpaper</string>
+    <string name="tit_unlimited_wallpapers">HD Wallpaper</string>
+    <string name="msg_unlimited_wallpapers">Humanly curated HD image is set as your wallpaper, daily</string>
     <string name="tit_customization">Customization</string>
-    <string name="msg_customization">You can stop auto-daily wallpaper changing from settings. It also provides other customizations</string>
+    <string name="msg_customization">"Don't forget to visit the settings..."</string>
 
 </resources>
