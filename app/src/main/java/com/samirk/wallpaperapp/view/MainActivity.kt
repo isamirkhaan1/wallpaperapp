@@ -19,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setupActionBar()
-        setupNavController()
+        showActionBar(false)
+        //setupNavController()
 
         Analytics.getInstance().logEvent(Analytics.EVENT_APP_OPEN)
     }

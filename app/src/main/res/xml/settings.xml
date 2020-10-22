@@ -2,27 +2,22 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/tit_general">
-      <!--  <SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:icon="@drawable/ic_wallpaper"
-            android:key="daily_new_wallpaper"
-            android:summary="@string/msg_daily_new_wallpaper"
-            android:title="@string/tit_daily_new_wallpaper" />
--->
+
         <SwitchPreferenceCompat
             android:defaultValue="false"
-            android:icon="@drawable/ic_wifi"
             android:key="wifi_only"
             android:summary="@string/msg_wifi_only"
-            android:title="@string/tit_wifi_only" />
+            android:title="@string/tit_wifi_only"
+
+            android:iconSpaceReserved="false"
+            app:iconSpaceReserved="false"
+            />
 
 
         <EditTextPreference
             android:dialogIcon="@drawable/ic_feedback"
             android:dialogMessage="@string/msg_feedback"
             android:dialogTitle="@string/tit_feedback"
-            android:icon="@drawable/ic_feedback"
 
             android:key="feedback"
             android:negativeButtonText="@string/tit_back"
@@ -30,18 +25,30 @@
 
             android:summary="@string/msg_feedback"
             android:title="@string/tit_feedback"
+
+
+            android:iconSpaceReserved="false"
+            app:iconSpaceReserved="false"
             />
 
         <Preference
             android:key="help"
             android:summary="Learn how to use this app"
-            android:title="Help" />
+            android:title="Help"
+
+            android:iconSpaceReserved="false"
+            app:iconSpaceReserved="false"
+            />
 
         <Preference
             android:key="app_version"
             android:selectable="false"
             android:summary="@string/msg_version"
-            android:title="@string/tit_version" />
-    </PreferenceCategory>
+            android:title="@string/tit_version"
+
+
+            android:iconSpaceReserved="false"
+            app:iconSpaceReserved="false"
+            />
 
 </PreferenceScreen>
